@@ -14,11 +14,12 @@
       }
 
       function greetUser() {
-        userName = readCookie("irock_username");
+        if (navigator.cookieEnabled)
+          userName = readCookie("irock_username");
         if (userName)
-            alert("Olá " + userName + ", senti sua falta.");
+          alert("Olá " + userName + ", senti sua falta.");
         else
-            alert('Olá! Eu sou sua pedra de estimação.');
+          alert('Olá! Eu sou sua pedra de estimação.');
       }
 
       function touchRock() {
@@ -29,7 +30,11 @@
           userName = prompt("Como você se chama?", "Entre com seu nome aqui.");
           if (userName)
             alert("Prazer em te conhecer, " + userName + ".");
-            writeCookie("irock_username", userName, 5 * 365);
+            if (navigator.cookieEnabled)
+              writeCookie("irock_username", userName, 5 * 365);
+            else
+              alert("Cookies não estão suportados/ativados no seu navegador, o que significa que eu não me " + 
+              "lembrarei de você na próxima vez que voltar. Me desculpe :(");
         }
         document.getElementById("rockImg").src = "rock_happy.png";
         setTimeout("document.getElementById('rockImg').src = 'rock.png';", 5 * 1000);
