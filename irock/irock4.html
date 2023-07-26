@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>iRock - The Virtual Pet Rock</title>
+
+    <script type="text/javascript">
+      var userName;
+
+      function resizeRock() {
+        var clientWindowHeight = document.body.clientHeight;
+        document.getElementById('rockImg').style.height =
+        (clientWindowHeight - 100) * 0.9;
+      }
+
+      function greetUser() {
+        alert('Olá! Eu sou sua pedra de estimação.');
+      }
+
+      function touchRock() {
+        if (userName) {
+          alert("Eu gosto de receber atenção, " + userName + ". Obrigado.");
+        }
+        else {
+          userName = prompt("Como você se chama?", "Entre com seu nome aqui.");
+          if (userName)
+            alert("Prazer em te conhecer, " + userName + ".");
+        }
+        document.getElementById("rockImg").src = "rock_happy.png";
+        setTimeout("document.getElementById('rockImg').src = 'rock.png';", 5 * 1000);
+      }
+    </script>
+  </head>
+
+  <body onload="greetUser(); resizeRock()" onresize="resizeRock()">
+    <div style="margin-top:100px; text-align:center">
+      <img id="rockImg" src="rock.png" alt="iRock" style="cursor:pointer" onclick="touchRock();" />
+    </div>
+  </body>
+</html>
